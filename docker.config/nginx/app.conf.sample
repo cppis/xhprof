@@ -1,0 +1,26 @@
+server {
+    listen 8142 default_server;
+    server_name xhgui;
+
+    access_log /var/log/nginx/access.log;
+    error_log  /var/log/nginx/error.log error;
+
+    root /usr/share/nginx/html/xhgui/webroot;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        # host document_root
+        root /vagrant/shared/php/xhgui/webroot;
+
+        try_files $uri =404;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass 127.0.0.1:7000;
+        fastcgi_index   index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

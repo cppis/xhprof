@@ -1,15 +1,17 @@
 <?php
 
+date_default_timezone_set('Asia/Seoul');
+
 require_once dirname(dirname(__FILE__)) . '/xhprof_lib/defaults.php';
 require_once XHPROF_CONFIG;
 
 include_once XHPROF_LIB_ROOT . '/display/xhprof.php';
 include (XHPROF_LIB_ROOT . "/utils/common.php");
 
-if (false !== $controlIPs && !in_array($_SERVER['REMOTE_ADDR'], $controlIPs))
-{
-  die("You do not have permission to view this page.");
-}
+//if (false !== $controlIPs && !in_array($_SERVER['REMOTE_ADDR'], $controlIPs))
+//{
+//  die("You do not have permission to view this page.");
+//}
 
 unset($controlIPs);
 
